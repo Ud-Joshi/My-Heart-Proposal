@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Proposal</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            text-align: center;
+            background-color: #ffefdb;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #ff69b4;
+            animation: pulse 1.5s infinite;
+        }
+        .question {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            transition: all 0.5s;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        button {
+            font-size: 18px;
+            padding: 12px 25px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            margin: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        .yes {
+            background-color: #4caf50;
+            color: white;
+        }
+        .no {
+            background-color: #f44336;
+            color: white;
+            position: absolute;
+        }
+        .hidden {
+            display: none;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        .final-msg {
+            font-size: 2rem;
+            margin-top: 30px;
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        .fireworks {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent, transparent, rgba(0, 0, 255, 0.7));
+            animation: fireworks 1s infinite;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Angel, Tumhe Ek Secret Bataun? 🌟</h1>
+        <div id="questions">
+            <div class="question hidden" id="question1">1. Tumhara smile dekhta hoon, to din ban jaata hai. Kya tum mujhe hamesha smile karte rakhogi? 😊</div>
+            <div class="question hidden" id="question2">2. Agar main tumhara ek superpower hota, to kya tum mujhe apna forever rakhti? 🦸‍♀️</div>
+            <div class="question hidden" id="question3">3. Kya tumhe lagta hai ki tum mere sapno ki Angel ho? 👼</div>
+            <div class="question hidden" id="question4">4. Tumhare bina meri duniya ka rang feeka lagta hai! Kya tum meri duniya banogi? 🌈</div>
+            <div class="question hidden" id="question5">5. Tumne mere dil ko chura liya hai! Kya tum mujhe hamesha ke liye apna bana logi? 💖</div>
+        </div>
+        <div class="buttons">
+            <button class="yes" onclick="nextQuestion()">Haan, Pakka! 😍</button>
+            <button class="no" id="noButton" onmouseover="moveButton()">Nahi, Sochungi 🤣</button>
+        </div>
+    </div>
+    <div class="fireworks hidden" id="fireworks"></div>
+
+    <script>
+        let currentQuestion = 0;
+        const totalQuestions = 5;
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                document.getElementById(`question${currentQuestion}`).classList.remove('hidden');
+                if (currentQuestion > 1) {
+                    document.getElementById(`question${currentQuestion - 1}`).classList.add('hidden');
+                }
+                if (currentQuestion === totalQuestions) {
+                    document.querySelector('h1').textContent = "Angel, Tumne 'Haan' bola! Ab main duniya ka sabse khush insaan hoon! 💖";
+                    document.getElementById('fireworks').classList.remove('hidden');
+                    document.querySelector('.buttons').classList.add('hidden');
+                }
+            }
+        }
+
+        function moveButton() {
+            const button = document.getElementById('noButton');
+            const x = Math.random() * (window.innerWidth - button.offsetWidth);
+            const y = Math.random() * (window.innerHeight - button.offsetHeight);
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+    </script>
+</body>
+</html>
